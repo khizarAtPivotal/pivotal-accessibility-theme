@@ -15,6 +15,8 @@
 
 </main><!-- #content -->
 
+<div class="sr-only live-status-region" role="status"></div>
+
 <footer>
     <div class="container">All rights reserved by Pivotal Accessibility</div>
 </footer>

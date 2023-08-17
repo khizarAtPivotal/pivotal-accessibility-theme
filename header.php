@@ -39,6 +39,19 @@ $header_type = 'default';
 			--color-red-400: #f87171;
 			--color-red-300: #fca5a5;
 			--color-red-700: #b91c1c;
+
+            --color-gray-50: #f9fafb;
+            --color-gray-100: #f3f4f6;
+            --color-gray-200: #e5e7eb;
+            --color-gray-300: #d1d5db;
+            --color-gray-400: #9ca3af;
+            --color-gray-500: #6b7280;
+            --color-gray-600: #4b5563;
+            --color-gray-700: #374151;
+            --color-gray-800: #1f2937;
+            --color-gray-900: #111827;
+            --color-gray-950: #030712;
+
 			--ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
 		}
 	</style>

@@ -10,7 +10,10 @@ if (!defined('ABSPATH')) {
     <div class="container">
         <?php get_template_part('template-parts/skip-link'); ?>
 
-        <a href="<?php echo esc_url( home_url() ); ?>" aria-label="<?php echo esc_attr(sprintf(__('%s Logo', 'lakegeorge'), get_bloginfo('name'))); ?>">
+        <a 
+            class="font-semibold" 
+            href="<?php echo esc_url( home_url() ); ?>" 
+            aria-label="<?php echo esc_attr(sprintf(__('%s Logo', 'lakegeorge'), get_bloginfo('name'))); ?>">
             Pivotal Accessibility
         </a>
 
