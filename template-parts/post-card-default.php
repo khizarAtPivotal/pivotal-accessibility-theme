@@ -24,7 +24,7 @@ if ($args) {
             <?php the_excerpt(); ?>
         </div>
 
-        <a class="mt-4 font-semibold text-primary-darker hover:underline" href="<?php the_permalink() ?>">
+        <a class="mt-4 font-semibold text-primary-darker underline" href="<?php the_permalink() ?>">
             Read More <span class="sr-only">(<?php the_title(); ?>)</span>
         </a>
     </div>

@@ -87,7 +87,6 @@ if (!function_exists('pivotalaccessibility_svg')) {
     }
 }
 
-
 function pivotalaccessibility_get_version() {
     $version = PIVOTAL_ACCESSIBILITY_VERSION;
 
@@ -119,4 +118,14 @@ function pivotalaccessibility_enqueue_scripts() {
     if (is_singular() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
     }
+}
+
+add_action("after_setup_theme", "pivotalaccessibility_after_setup_theme");
+
+function pivotalaccessibility_after_setup_theme() {
+    register_nav_menus(array(
+        'primary' => esc_html__('Primary', 'pivotalaccessibility'),
+        'footer' => esc_html__('Footer', 'pivotalaccessibility'),
+        'legal' => esc_html__('Legal', 'pivotalaccessibility'),
+    ));
 }
