@@ -214,6 +214,30 @@ input[type="submit"] {
     text-decoration: underline;
 }
 
+/* Menu */
+
+header nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header nav ul li.menu-item-has-children {
+    position: relative;
+}
+
+header nav ul li.menu-item-has-children a::after {
+    content: "▾";
+}
+
+header nav ul.sub-menu {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    visibility: hidden;
+}
+
+
 /* Prose */
 
 .prose {

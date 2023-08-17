@@ -7,25 +7,26 @@ if (!defined('ABSPATH')) {
 ?>
 
 <header x-data role="banner" class="w-full h-24 z-[1001] py-4">
-    <div class="container">
-        <?php get_template_part('template-parts/skip-link'); ?>
+    <?php get_template_part('template-parts/skip-link'); ?>
 
+    <div class="container flex justify-between">
         <a 
-            class="font-semibold" 
+            class="shrink-0 font-semibold flex justify-center items-center" 
             href="<?php echo esc_url( home_url() ); ?>" 
             aria-label="<?php echo esc_attr(sprintf(__('%s Logo', 'lakegeorge'), get_bloginfo('name'))); ?>">
             Pivotal Accessibility
         </a>
 
-        <div class="container flex justify-between xl:justify-center items-stretch gap-4">
-            <?php get_template_part('template-parts/headers/partials/logo'); ?>
-            
-            <div class="hidden xl:flex justify-start items-center p-2">
-                <nav role="navigation" aria-label="Primary" class="hidden xl:block h-full">
-                </nav>
-            </div>
+        <?php
+            wp_nav_menu(array(
+                'theme_location' => 'primary',
+                'menu_class' => 'nav-menu flex justify-end items-center gap-4 font-medium',
+                'container' => 'nav',
+                'container_aria_label' => 'Primary',
+                'container_class' => 'hidden xl:flex'
+            ));
+        ?>
 
-            <?php get_template_part('template-parts/headers/partials/trigger', 'menu'); ?>
-        </div>
+        <?php get_template_part('template-parts/headers/partials/trigger', 'menu'); ?>
     </div>
 </header>
