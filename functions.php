@@ -1,0 +1,3 @@
+<?php
+
+define('PIVOTAL_ACCESSIBILITY_VERSION', '0.0.1');
