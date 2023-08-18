@@ -53,13 +53,13 @@ function handleDesktopMenu() {
         toggle.setAttribute('aria-label', `${anchor.textContent.trim()}`);
 
         toggle.addEventListener('click', () => {
-            submenu.classList.toggle('visible')
+            submenu.classList.toggle('visible');
             toggle.setAttribute('aria-expanded', submenu.classList.contains('visible'));
         });
 
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && item.contains(document.activeElement)) {
-                submenu.classList.remove('visible')
+                submenu.classList.remove('visible');
                 toggle.focus();
             }
         })
