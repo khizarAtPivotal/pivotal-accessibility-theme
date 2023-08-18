@@ -57,6 +57,12 @@ function handleDesktopMenu() {
             toggle.setAttribute('aria-expanded', item.classList.contains('toggled'));
         });
 
+        anchor.addEventListener('keydown', (e) => {
+            if(e.key === 'Tab' && e.shiftKey) {
+                item.classList.remove('toggled');
+            }
+        })
+
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && item.contains(document.activeElement)) {
                 item.classList.remove('toggled');
@@ -69,7 +75,16 @@ function handleDesktopMenu() {
 
     function handleSubMenu(item, menu) {
         const items = menu.querySelectorAll('.menu-item');
-        console.log(items);
+        const last = items[items.length - 1];
+        const lastAnchor = last.querySelector('a');
+
+        if (lastAnchor) {
+            lastAnchor.addEventListener('keydown', (e) => {
+                if(e.key === 'Tab' && !e.shiftKey) {
+                    item.classList.remove('toggled');
+                }
+            });
+        }
     }
 
 }
