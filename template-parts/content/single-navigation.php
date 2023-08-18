@@ -10,7 +10,7 @@ $next_link = get_next_post_link('%link');
         <li class="w-full lg:w-1/2 lg:flex-grow">
             <p class="flex justify-start items-center font-sm opacity-75 mb-1 gap-2">
                 <span class="w-5 h-auto flex justify-start item-center">
-                    <?php echo pivotalaccessibility_svg('tabler-icons/chevron-left'); ?>
+                    <?php echo pivotalaccessibility_svg('arrow-left'); ?>
                 </span> 
                 
                 <?php esc_html_e('Previous', 'pivotalaccessibility'); ?>
@@ -27,7 +27,7 @@ $next_link = get_next_post_link('%link');
                 <?php esc_html_e('Next', 'pivotalaccessibility'); ?>
 
                 <span class="w-5 h-auto flex justify-end item-center">
-                    <?php echo pivotalaccessibility_svg('tabler-icons/chevron-right'); ?>
+                    <?php echo pivotalaccessibility_svg('arrow-right'); ?>
                 </span>
             </p>
             <span class="text-underline font-semibold text-primary-darker">

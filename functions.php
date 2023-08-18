@@ -77,7 +77,7 @@ if (!function_exists('pivotalaccessibility_svg')) {
             return;
         }
 
-        $file_location = get_template_directory() . '/assets/dist/svg/' . $filename . '.svg';
+        $file_location = get_template_directory() . '/assets/icons/' . $filename . '.svg';
 
         if (!file_exists($file_location)) {
             return;
@@ -134,12 +134,10 @@ function pivotalaccessibility_after_setup_theme() {
 
 class Pivotal_Accessibility_Nav_Walker extends Walker_Nav_Menu {
     function start_lvl(&$output, $depth = 0, $args = null) {
-        // Add a button after the list item's opening tag if it has children
-        if ($depth == 0) {
-            $output .= '<button class="menu-toggle w-6" aria-expanded="false" aria-label="'.__('Toggle sub-menu', 'pivotalaccessibility').'">';
-            $output .= '<span aria-hidden="true">▾</span>';
-            $output .= '</button>';
-        }
+        // Add a button after the list item's opening tag
+        $output .= '<button class="menu-toggle w-6" aria-expanded="false" aria-label="'.__('Toggle sub-menu', 'pivotalaccessibility').'">';
+        $output .= '<span class="menu-toggle-icon" aria-hidden="true">'.pivotalaccessibility_svg('chevron-down').'</span>';
+        $output .= '</button>';
         
         $output .= '<ul class="sub-menu">';
     }

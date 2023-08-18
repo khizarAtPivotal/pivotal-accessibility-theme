@@ -105,11 +105,17 @@ input[type="submit"] {
     margin: 1.5rem 0;
 }
 
-.comment-list {
+.comment-list,
+.comment-list ol.children {
     display: flex;
     flex-direction: column;
-    margin: 1rem 0;
-    gap: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    gap: 2rem;
+}
+
+.comment-list ol.children {
+    padding-left: 1rem;
 }
 
 .comment-form,
@@ -216,9 +222,14 @@ input[type="submit"] {
 
 /* Menu */
 
-header nav ul {
+header nav > ul {
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+header nav > ul li {
+    display: inline-flex;
     align-items: center;
 }
 
@@ -227,14 +238,40 @@ header nav ul li.menu-item-has-children {
 }
 
 header nav ul.sub-menu {
+    background: white;
     position: absolute;
     left: 0;
     top: 100%;
     visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    border: 0.05em solid var(--color-gray-900);
+    white-space: nowrap;
+    text-align: left;
+    transition: all 400ms var(--ease-out-expo);
+    transform: translateY(1rem);
+    opacity: 0;
 }
 
-header nav ul.sub-menu.visible {
+header nav li.toggled > ul.sub-menu {
     visibility: visible;
+    transform: translate(0);
+    opacity: 1;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+header nav ul .menu-toggle {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.6em;
+    height: 1.6em;
+    padding: 0.2em;
 }
 
 /* Prose */
@@ -512,7 +549,7 @@ a .prose code {
 .prose ul>li::marker {
     font-weight: 400;
     color: #757575;
-    font-size: 1.25em;
+    font-size: 1em;
 }
 
 .prose hr {

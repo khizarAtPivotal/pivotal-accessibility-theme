@@ -42,9 +42,9 @@ function handleDesktopMenu() {
     }
 
     function handleMenuItem(item) {
+        const anchor = item.querySelector('a');
         const toggle = item.querySelector('.menu-toggle');
         const submenu = item.querySelector('.sub-menu');
-        const anchor = item.querySelector('a');
 
         if (!toggle || !submenu || !anchor) {
             return
@@ -53,16 +53,23 @@ function handleDesktopMenu() {
         toggle.setAttribute('aria-label', `${anchor.textContent.trim()}`);
 
         toggle.addEventListener('click', () => {
-            submenu.classList.toggle('visible');
-            toggle.setAttribute('aria-expanded', submenu.classList.contains('visible'));
+            item.classList.toggle('toggled');
+            toggle.setAttribute('aria-expanded', item.classList.contains('toggled'));
         });
 
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && item.contains(document.activeElement)) {
-                submenu.classList.remove('visible');
+                item.classList.remove('toggled');
                 toggle.focus();
             }
-        })
+        });
+
+        handleSubMenu(item, submenu)
+    }
+
+    function handleSubMenu(item, menu) {
+        const items = menu.querySelectorAll('.menu-item');
+        console.log(items);
     }
 
 }
