@@ -14,7 +14,7 @@
 
 get_header(); ?>
 
-<div class="container py-24">
+<div class="container">
 	<div id="primary" class="content-area">
 
 			<?php

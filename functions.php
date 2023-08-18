@@ -112,7 +112,7 @@ function pivotalaccessibility_enqueue_scripts() {
     wp_enqueue_script('pivotalaccessibility-main', pivotalaccessibility_assets('js/main.js'), array('jquery'), pivotalaccessibility_get_version(), true);
     wp_enqueue_style('pivotalaccessibility-style', pivotalaccessibility_assets('css/style.css'), array(), pivotalaccessibility_get_version(), 'all');
    
-    // Localize 
+    // Localize
     wp_localize_script('pivotalaccessibility-main', 'pivotalaccessibilityData', []);
 
     // Extra

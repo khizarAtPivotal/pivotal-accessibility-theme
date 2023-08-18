@@ -12,7 +12,7 @@ get_header();
     <div class="container flex-grow self-stretch">
 
     <?php if (have_posts()): ?>
-        <div class="posts grid lg:grid-cols-3 gap-8 my-24 items-start">
+        <div class="posts grid lg:grid-cols-3 gap-8 my-12 items-start">
 
         <?php 
             global $wp_query;
@@ -26,9 +26,9 @@ get_header();
         </div>
         
         <?php if($wp_query->max_num_pages > 1): ?>
-        <div class="next_page__link flex justify-center items-center mt-8">
-            <?php next_posts_link( 'Load More'.'<span class="sr-only"> Posts</span>' ); ?>
-        </div>  
+            <div class="next_page__link flex justify-center items-center mt-8">
+                <?php next_posts_link( 'Load More'.'<span class="sr-only"> Posts</span>' ); ?>
+            </div>
         <?php endif; ?> 
 
         <?php else:
