@@ -21,8 +21,6 @@ $header_type = 'default';
 	<script defer src="<?php echo pivotalaccessibility_assets('js/alpine-collapse.min.js') ?>"></script>
 	<script defer src="<?php echo pivotalaccessibility_assets('js/alpine-intersect.min.js') ?>"></script>
 	<script defer src="<?php echo pivotalaccessibility_assets('js/alpine.min.js') ?>"></script>
-	<script src="<?php echo pivotalaccessibility_assets('js/embla-carousel.umd.js') ?>"></script>
-	<script src="<?php echo pivotalaccessibility_assets('js/twind.min.js') ?>"></script>
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -110,7 +108,7 @@ $header_type = 'default';
 
 <?php wp_body_open(); ?>
 
-<div id="page" class="site">
+<div id="page" class="site" x-clock>
 
 	<?php get_template_part('template-parts/header', $header_type);?>
 	

@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
         <a 
             class="shrink-0 font-semibold flex justify-center items-center" 
             href="<?php echo esc_url( home_url() ); ?>" 
-            aria-label="<?php echo esc_attr(sprintf(__('%s Logo', 'lakegeorge'), get_bloginfo('name'))); ?>">
+            aria-label="<?php echo esc_attr(sprintf(__('%s Logo', 'pivotalaccessibility'), get_bloginfo('name'))); ?>">
             Pivotal Accessibility
         </a>
 
@@ -23,7 +23,8 @@ if (!defined('ABSPATH')) {
                 'menu_class' => 'nav-menu flex justify-end items-center gap-4 font-medium',
                 'container' => 'nav',
                 'container_aria_label' => 'Primary',
-                'container_class' => 'hidden xl:flex'
+                'container_class' => 'hidden xl:flex',
+                'walker' => new Pivotal_Accessibility_Nav_Walker()
             ));
         ?>
 

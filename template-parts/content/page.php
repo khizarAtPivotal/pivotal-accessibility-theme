@@ -4,7 +4,7 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package LakeGeorge
+ * @package pivotalaccessibility
  */
 
 ?>
@@ -16,7 +16,7 @@
 
 			wp_link_pages(
 				array(
-					'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'lakegeorge' ),
+					'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'pivotalaccessibility' ),
 					'after'  => '</div>',
 				)
 			);

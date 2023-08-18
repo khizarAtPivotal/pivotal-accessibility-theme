@@ -4,7 +4,7 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package LakeGeorge
+ * @package pivotalaccessibility
  */
 
 ?>
@@ -22,7 +22,7 @@
 		?>
 				<div class="entry-meta">
 					<?php
-						LakeGeorge\Core\Tags::posted_on();
+						pivotalaccessibility\Core\Tags::posted_on();
 					?>
 				</div><!-- .entry-meta -->
 		<?php
@@ -30,13 +30,13 @@
 		?>
 	</header><!-- .entry-header -->
 
-	<div class="entry-content lakegeorge_prose">
+	<div class="entry-content pivotalaccessibility_prose">
 		<?php
 			the_content(
 				sprintf(
 					wp_kses(
 						/* translators: %s: Name of current post. */
-						__( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'lakegeorge' ),
+						__( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'pivotalaccessibility' ),
 						array(
 							'span' => array(
 								'class' => array(),
@@ -49,7 +49,7 @@
 
 			wp_link_pages(
 				array(
-					'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'lakegeorge' ),
+					'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'pivotalaccessibility' ),
 					'after'  => '</div>',
 				)
 			);
@@ -57,6 +57,6 @@
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-		<?php LakeGeorge\Core\Tags::entry_footer(); ?>
+		<?php pivotalaccessibility\Core\Tags::entry_footer(); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

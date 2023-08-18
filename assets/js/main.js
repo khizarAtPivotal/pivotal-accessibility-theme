@@ -28,8 +28,44 @@ jQuery(document).ready(() => {
             });
         });
     });
+
+    handleDesktopMenu();
 });
 
+function handleDesktopMenu() {
+    const menuItems = document.querySelectorAll('.menu-item');
+
+    if (menuItems.length > 0) {
+        menuItems.forEach((item) => {
+            handleMenuItem(item);
+        });
+    }
+
+    function handleMenuItem(item) {
+        const toggle = item.querySelector('.menu-toggle');
+        const submenu = item.querySelector('.sub-menu');
+        const anchor = item.querySelector('a');
+
+        if (!toggle || !submenu || !anchor) {
+            return
+        }
+
+        toggle.setAttribute('aria-label', `${anchor.textContent.trim()}`);
+
+        toggle.addEventListener('click', () => {
+            submenu.classList.toggle('visible')
+            toggle.setAttribute('aria-expanded', submenu.classList.contains('visible'));
+        });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && item.contains(document.activeElement)) {
+                submenu.classList.remove('visible')
+                toggle.focus();
+            }
+        })
+    }
+
+}
 
 let liveElementTimeout = null;
 

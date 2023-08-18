@@ -226,10 +226,6 @@ header nav ul li.menu-item-has-children {
     position: relative;
 }
 
-header nav ul li.menu-item-has-children a::after {
-    content: "▾";
-}
-
 header nav ul.sub-menu {
     position: absolute;
     left: 0;
@@ -237,6 +233,9 @@ header nav ul.sub-menu {
     visibility: hidden;
 }
 
+header nav ul.sub-menu.visible {
+    visibility: visible;
+}
 
 /* Prose */
 

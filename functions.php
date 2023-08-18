@@ -108,11 +108,12 @@ add_action('wp_enqueue_scripts', "pivotalaccessibility_enqueue_scripts");
 
 function pivotalaccessibility_enqueue_scripts() {
     // Scripts
-    wp_enqueue_script('lakegeorge-main', pivotalaccessibility_assets('js/main.js'), array('jquery'), pivotalaccessibility_get_version(), false);
-    wp_enqueue_style('lakegeorge-style', pivotalaccessibility_assets('css/style.css'), array(), pivotalaccessibility_get_version(), 'all');
+    wp_enqueue_script('pivotalaccessibility-twind', pivotalaccessibility_assets('js/twind.min.js'), array(), pivotalaccessibility_get_version(), false);
+    wp_enqueue_script('pivotalaccessibility-main', pivotalaccessibility_assets('js/main.js'), array('jquery'), pivotalaccessibility_get_version(), true);
+    wp_enqueue_style('pivotalaccessibility-style', pivotalaccessibility_assets('css/style.css'), array(), pivotalaccessibility_get_version(), 'all');
    
     // Localize 
-    wp_localize_script('lakegeorge-main', 'lakegeorgeData', []);
+    wp_localize_script('pivotalaccessibility-main', 'pivotalaccessibilityData', []);
 
     // Extra
     if (is_singular() && comments_open() && get_option('thread_comments')) {
@@ -128,4 +129,18 @@ function pivotalaccessibility_after_setup_theme() {
         'footer' => esc_html__('Footer', 'pivotalaccessibility'),
         'legal' => esc_html__('Legal', 'pivotalaccessibility'),
     ));
+}
+
+
+class Pivotal_Accessibility_Nav_Walker extends Walker_Nav_Menu {
+    function start_lvl(&$output, $depth = 0, $args = null) {
+        // Add a button after the list item's opening tag if it has children
+        if ($depth == 0) {
+            $output .= '<button class="menu-toggle w-6" aria-expanded="false" aria-label="'.__('Toggle sub-menu', 'pivotalaccessibility').'">';
+            $output .= '<span aria-hidden="true">▾</span>';
+            $output .= '</button>';
+        }
+        
+        $output .= '<ul class="sub-menu">';
+    }
 }

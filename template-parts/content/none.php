@@ -4,7 +4,7 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package LakeGeorge
+ * @package pivotalaccessibility
  */
 
 ?>
@@ -14,7 +14,7 @@
 
 	<div class="page-content flex flex-col justify-center items-center">
 
-		<h1 class="page-title text-5xl font-bold mb-4"><?php esc_html_e( 'Nothing Found', 'lakegeorge' ); ?></h1>
+		<h1 class="page-title text-5xl font-bold mb-4"><?php esc_html_e( 'Nothing Found', 'pivotalaccessibility' ); ?></h1>
 
 		<?php if ( is_home() && current_user_can( 'publish_posts' ) ) : ?>
 
@@ -23,11 +23,11 @@
 					printf(
 						wp_kses(
 							/* translators: 1: link. */
-							__( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'lakegeorge' ),
+							__( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'pivotalaccessibility' ),
 							array(
 								'a' => array(
 									'href' => array(),
-									'class' => 'lakegeorge_button--primary mt-10'
+									'class' => 'pivotalaccessibility_button--primary mt-10'
 								),
 							)
 						),
@@ -39,7 +39,7 @@
 		<?php elseif ( is_search() ) : ?>
 
 			<p>
-				<?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'lakegeorge' ); ?>
+				<?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'pivotalaccessibility' ); ?>
 			</p>
 			
 			<?php
@@ -48,7 +48,7 @@
 			?>
 
 			<p>
-				<?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'lakegeorge' ); ?>
+				<?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'pivotalaccessibility' ); ?>
 			</p>
 
 		<?php 

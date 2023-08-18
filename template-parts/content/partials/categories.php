@@ -22,7 +22,7 @@ if(!$categories) {
 
 ?>
 
-<ul class="lakegeorge_single_post__categories">
+<ul class="pivotalaccessibility_single_post__categories">
 
     <?php 
         foreach ($categories as $index => $category): 

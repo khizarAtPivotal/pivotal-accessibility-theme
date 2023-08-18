@@ -4,22 +4,22 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
  *
- * @package lakegeorge
+ * @package pivotalaccessibility
  */
 
 get_header(); ?>
 
-<div class="lakegeorge-container lakegeorge_search_page">
+<div class="pivotalaccessibility-container pivotalaccessibility_search_page">
 	<div id="primary" class="content-area">
 
 		<?php if ( have_posts() ) : global $wp_query; ?>
 
 		<header>
-			<h1 class="lakegeorge_page__title">
+			<h1 class="pivotalaccessibility_page__title">
 				<?php
 					printf(
 						/* translators: %s: Search Term. */
-						esc_html( __("Search Results for: %s", "lakegeorge") ),
+						esc_html( __("Search Results for: %s", "pivotalaccessibility") ),
 						'<em>' . get_search_query() . '</em>'
 					);
 				?>
@@ -40,7 +40,7 @@ get_header(); ?>
 				
 			if($wp_query->max_num_pages > 1): ?>
 
-				<div class="lakegeorge_pagination">
+				<div class="pivotalaccessibility_pagination">
 
 					<?php
 						$args = [
