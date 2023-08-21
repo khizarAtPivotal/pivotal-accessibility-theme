@@ -11,8 +11,22 @@
 
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> >
+	<div class="relative h-96 flex flex-start items-stretch gap-4 mb-8">
+		<div class="absolute inset-0 self-stretch bg-[#00000066] text-white py-16 px-16 rounded-2xl">
+			<h1 class="mb-4">
+				<?php the_title(); ?>
+			</h1>
+		</div>
 
-	<h1><?php the_title(); ?></h1>
+		<?php if(get_post_thumbnail_id()): ?>
+			<div class="h-full w-full rounded-2xl overflow-hidden">
+				<?php get_template_part('template-parts/post-image'); ?>
+			</div>
+		<?php endif; ?>
+	</div>
+	
+	<?php get_template_part('template-parts/content/partials/categories'); ?>
+
 	<div class="entry-content prose">
 		<?php
 			the_content(

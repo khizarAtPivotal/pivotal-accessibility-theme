@@ -28,7 +28,7 @@ if (!defined('ABSPATH')) {
             ));
         ?>
 
-        <button class="font-sm font-semibold" x-on:click.prevent="showSidebar ? hide() : show()">
+        <button class="font-sm font-semibold xl:hidden" x-on:click.prevent="showSidebar ? hide() : show()">
             Open Menu
         </button>
 

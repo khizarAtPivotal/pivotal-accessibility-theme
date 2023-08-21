@@ -9,7 +9,7 @@
 
 get_header(); ?>
 
-<div id="primary" class="content-area container my-16">
+<div id="primary" class="content-area container">
 	<?php
 
 		/* Start the Loop */

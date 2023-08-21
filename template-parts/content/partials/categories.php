@@ -22,7 +22,7 @@ if(!$categories) {
 
 ?>
 
-<ul class="pivotalaccessibility_single_post__categories">
+<ul class="single_post__categories flex justify-start items-center flex-wrap gap-1">
 
     <?php 
         foreach ($categories as $index => $category): 
