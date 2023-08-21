@@ -17,7 +17,7 @@
 
 <div class="sr-only live-status-region" role="status"></div>
 
-<footer>
+<footer class="py-16 mt-16 border-t-1 border-gray-200">
     <div class="container">All rights reserved by Pivotal Accessibility</div>
 </footer>
 

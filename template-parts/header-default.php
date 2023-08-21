@@ -6,12 +6,12 @@ if (!defined('ABSPATH')) {
 
 ?>
 
-<header x-data="header" role="banner" class="w-full h-24 z-[1001] py-4">
+<header x-data="header" role="banner" class="w-full h-24 z-[1001] py-4 flex flex-col justify-center items-center">
     <?php get_template_part('template-parts/skip-link'); ?>
 
-    <div class="container flex justify-between">
+    <div class="container flex justify-between items-center">
         <a 
-            class="shrink-0 font-semibold flex justify-center items-center" 
+            class="shrink-0 text-base font-bold flex justify-center items-center" 
             href="<?php echo esc_url( home_url() ); ?>" 
             aria-label="<?php echo esc_attr(sprintf(__('%s Logo', 'pivotalaccessibility'), get_bloginfo('name'))); ?>">
             Pivotal Accessibility
