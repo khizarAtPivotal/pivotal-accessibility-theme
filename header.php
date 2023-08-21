@@ -112,4 +112,4 @@ $header_type = 'default';
 
 	<?php get_template_part('template-parts/header', $header_type);?>
 	
-	<main id="content" class="site-content pt-24 xl:pt-0" role="main">
+	<main id="content" class="site-content xl:pt-0" role="main">

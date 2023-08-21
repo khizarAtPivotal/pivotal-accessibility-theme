@@ -72,10 +72,10 @@ function handleDesktopMenu() {
         if (e.key === 'Escape') {
             const item = e.target.closest('.toggled');
             const toggle = item.querySelector('.menu-toggle');
-            
+
             item.classList.remove('toggled');
-            
-            if(toggle) {
+
+            if (toggle) {
                 toggle.focus();
             }
         }
@@ -122,3 +122,33 @@ function announceToScreenReader(text, role, timeout = 1000, once = false) {
         liveElementTimeout = null;
     }, timeout);
 }
+
+
+document.addEventListener("alpine:init", () => {
+    Alpine.data("header", () => ({
+        showSidebar: false,
+        historyChangeListener: null,
+
+        show() {
+            this.showSidebar = true;
+
+            window.location.hash = '#sidebar';
+
+            this.historyChangeListener = (e) => {
+                if (!location.hash) {
+                    this.hide();
+                }
+            };
+
+            window.addEventListener("hashchange", this.historyChangeListener);
+        },
+
+        hide() {
+            this.showSidebar = false;
+
+            history.replaceState(null, null, " ");
+
+            window.removeEventListener("hashchange", this.historyChangeListener);
+        },
+    }));
+});
