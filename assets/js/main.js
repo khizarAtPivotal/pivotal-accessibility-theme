@@ -33,6 +33,8 @@ jQuery(document).ready(() => {
 });
 
 function handleDesktopMenu() {
+    const $ = jQuery;
+
     const menuItems = document.querySelectorAll('.menu-item');
 
     if (menuItems.length > 0) {
@@ -58,20 +60,26 @@ function handleDesktopMenu() {
         });
 
         anchor.addEventListener('keydown', (e) => {
-            if(e.key === 'Tab' && e.shiftKey) {
+            if (e.key === 'Tab' && e.shiftKey) {
                 item.classList.remove('toggled');
-            }
-        })
-
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && item.contains(document.activeElement)) {
-                item.classList.remove('toggled');
-                toggle.focus();
             }
         });
 
         handleSubMenu(item, submenu)
     }
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const item = e.target.closest('.toggled');
+            const toggle = item.querySelector('.menu-toggle');
+            
+            item.classList.remove('toggled');
+            
+            if(toggle) {
+                toggle.focus();
+            }
+        }
+    });
 
     function handleSubMenu(item, menu) {
         const items = menu.querySelectorAll('.menu-item');
@@ -80,7 +88,7 @@ function handleDesktopMenu() {
 
         if (lastAnchor) {
             lastAnchor.addEventListener('keydown', (e) => {
-                if(e.key === 'Tab' && !e.shiftKey) {
+                if (e.key === 'Tab' && !e.shiftKey) {
                     item.classList.remove('toggled');
                 }
             });
