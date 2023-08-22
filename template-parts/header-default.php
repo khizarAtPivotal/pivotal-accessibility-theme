@@ -33,7 +33,11 @@ if (!defined('ABSPATH')) {
             ));
         ?>
 
-        <button class="font-sm font-semibold xl:hidden" x-on:click.prevent="showSidebar ? hide() : show()">
+        <?php get_template_part('template-parts/header', 'search-form'); ?>
+
+        <button
+            class="font-sm font-semibold xl:hidden" 
+            x-on:click.prevent="showSidebar ? hide() : show()">
             Open Menu
         </button>
 
