@@ -71,6 +71,11 @@ function handleDesktopMenu() {
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             const item = e.target.closest('.toggled');
+            
+            if(!item) {
+                return
+            }
+
             const toggle = item.querySelector('.menu-toggle');
 
             item.classList.remove('toggled');

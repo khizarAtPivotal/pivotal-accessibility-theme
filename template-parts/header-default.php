@@ -12,9 +12,14 @@ if (!defined('ABSPATH')) {
     <div class="container flex justify-between items-center">
         <a 
             class="shrink-0 text-base font-bold flex justify-center items-center" 
-            href="<?php echo esc_url( home_url() ); ?>" 
+            href="<?php echo esc_url(home_url()); ?>" 
             aria-label="<?php echo esc_attr(sprintf(__('%s Logo', 'pivotalaccessibility'), get_bloginfo('name'))); ?>">
-            Pivotal Accessibility
+
+            <?php if(has_custom_logo()): ?>
+                <?php get_template_part('template-parts/header-logo'); ?>
+            <?php else: ?>
+                <?php echo esc_html(get_bloginfo('name')); ?>
+            <?php endif; ?>
         </a>
 
         <?php

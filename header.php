@@ -4,8 +4,6 @@
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  */
 
-$header_type = 'default';
-
 ?>
 
 <!DOCTYPE html>
@@ -16,11 +14,6 @@ $header_type = 'default';
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	
 	<?php wp_head(); ?>
-	
-	<script defer src="<?php echo pivotalaccessibility_assets('js/alpine-focus.min.js') ?>"></script>
-	<script defer src="<?php echo pivotalaccessibility_assets('js/alpine-collapse.min.js') ?>"></script>
-	<script defer src="<?php echo pivotalaccessibility_assets('js/alpine-intersect.min.js') ?>"></script>
-	<script defer src="<?php echo pivotalaccessibility_assets('js/alpine.min.js') ?>"></script>
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,8 +21,8 @@ $header_type = 'default';
 
 	<style>
 		:root {
-			--color-primary: #6F358F;
-			--color-primary-darker: #6F358F;
+			--color-primary: #6750A4;
+			--color-primary-darker: #21005D;
 			--color-secondary: #213C7F;
 			--color-accent: #FFC978;
 			--color-dark: #061735;
@@ -51,6 +44,8 @@ $header_type = 'default';
             --color-gray-950: #030712;
 
 			--ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+			--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+			--line-height: 1.6;
 		}
 	</style>
 
@@ -110,6 +105,8 @@ $header_type = 'default';
 
 <div id="page" class="site" x-clock>
 
-	<?php get_template_part('template-parts/header', $header_type);?>
+	<?php $header_type = 'default'; ?>
+
+	<?php get_template_part('template-parts/header', $header_type); ?>
 	
 	<main id="content" class="site-content xl:pt-0" role="main">
