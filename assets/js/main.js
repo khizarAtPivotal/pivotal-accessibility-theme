@@ -49,7 +49,7 @@ function handleDesktopMenu() {
         const submenu = item.querySelector('.sub-menu');
 
         if (!toggle || !submenu || !anchor) {
-            return
+            return;
         }
 
         toggle.setAttribute('aria-label', `${anchor.textContent.trim()}`);

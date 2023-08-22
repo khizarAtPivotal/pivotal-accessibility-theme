@@ -1,7 +1,6 @@
 <?php
 
-define('PIVOTAL_ACCESSIBILITY_VERSION', '0.0.1');
-
+define('PIVOTAL_ACCESSIBILITY_VERSION', '0.0.2');
 
 add_action("after_setup_theme", "pivotalaccessibility_after_setup_theme");
 add_action("wp_enqueue_scripts", "pivotalaccessibility_enqueue_scripts");
@@ -153,8 +152,7 @@ function pivotalaccessibility_after_setup_theme() {
 function pivotalaccessibility_google_fonts() {
     /**
      * Load fonts from google server when Kirki does not exist.
-     *
-     */
+    */
 
     $fonts = [
         "primary" => "Inter",
