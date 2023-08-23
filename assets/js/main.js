@@ -71,8 +71,8 @@ function handleDesktopMenu() {
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             const item = e.target.closest('.toggled');
-            
-            if(!item) {
+
+            if (!item) {
                 return
             }
 
@@ -155,5 +155,73 @@ document.addEventListener("alpine:init", () => {
 
             window.removeEventListener("hashchange", this.historyChangeListener);
         },
+    }));
+
+    Alpine.data("search", () => ({
+        focused: false,
+        debounceTimeout: null,
+        results: [],
+        state: 'idle',
+
+        init() {
+            this.handleFocused();
+
+            this.$refs.input.addEventListener('input', (e) => {
+                this.handleFocused();
+
+                const query = e.target.value;
+                const selectedPostTypes = ['post', 'page'];
+
+                clearTimeout(this.debounceTimeout);
+
+                if (e.target.value.length <= 2) {
+                    this.results = []
+                    return;
+                }
+
+                this.debounceTimeout = setTimeout(() => {
+                    var formData = new FormData();
+                    formData.append('action', 'pivotalaccessibility_index_search');
+                    formData.append('query', query);
+                    formData.append('post_types', JSON.stringify(selectedPostTypes));
+
+                    this.results = [];
+                    this.state = 'searching'
+
+                    fetch(pivotalaccessibilityData.ajaxURL, {
+                        method: 'POST',
+                        body: formData,
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            this.state = 'searched'
+                            this.results = data
+                            console.log(this.results)
+                        })
+                        .catch(error => {
+                            this.state = 'searched'
+                            console.error('Error:', error);
+                        });
+                }, 300);
+
+
+            });
+
+            this.$refs.input.addEventListener('focus', (e) => {
+                this.focused = true
+            });
+
+            this.$refs.input.addEventListener('blur', (e) => {
+                this.handleFocused();
+            });
+        },
+
+        handleFocused() {
+            if (this.$refs.input.value) {
+                this.focused = true
+            } else {
+                this.focused = false
+            }
+        }
     }));
 });

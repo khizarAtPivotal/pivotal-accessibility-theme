@@ -5,6 +5,8 @@ define('PIVOTAL_ACCESSIBILITY_VERSION', '0.0.2');
 add_action("after_setup_theme", "pivotalaccessibility_after_setup_theme");
 add_action("wp_enqueue_scripts", "pivotalaccessibility_enqueue_scripts");
 add_action('wp_print_styles', "pivotalaccessibility_google_fonts");
+add_action('wp_ajax_pivotalaccessibility_index_search', 'pivotalaccessibility_index_search');
+add_action('wp_ajax_nopriv_pivotalaccessibility_index_search', 'pivotalaccessibility_index_search');
 
 add_filter("script_loader_tag", "pivotalaccessibility_add_defer_to_alpine_script", 10, 3);
 
@@ -94,7 +96,12 @@ function pivotalaccessibility_enqueue_scripts() {
     wp_enqueue_style('pivotalaccessibility-style', pivotalaccessibility_assets('css/style.css'), array(), pivotalaccessibility_get_version(), 'all');
    
     // Localize
-    wp_localize_script('pivotalaccessibility-main', 'pivotalaccessibilityData', []);
+    wp_localize_script('pivotalaccessibility-main', 'pivotalaccessibilityData', [
+        '_wpnonce' => wp_create_nonce('pivotalaccessibility_ajax'),
+        'homeURL' => esc_url(home_url()),
+        'assetsURL' => esc_url(pivotalaccessibility_assets('/')),
+        'ajaxURL' => esc_url(admin_url('admin-ajax.php')),
+    ]);
 
     // Extra
     if (is_singular() && comments_open() && get_option('thread_comments')) {
@@ -181,6 +188,56 @@ function pivotalaccessibility_google_fonts() {
 
     wp_enqueue_style($fonts['primary']);
     wp_enqueue_style($fonts['heading']);
+}
+
+function pivotalaccessibility_index_search() {
+    $query = sanitize_text_field($_POST['query']); // Sanitize input
+    $post_types = isset($_POST['post_types']) ? $_POST['post_types'] : array('post'); // Sanitize and get selected post types
+    $results = pivotalaccessibility_search_query($query, $post_types); // Pass post types to search function
+
+    // Prepare the response array
+    $response = array();
+
+    foreach ($results as $result_id) {
+        $post = get_post($result_id);
+        $response_item = array(
+            'title' => $post->post_title,
+            'post_type' => $post->post_type,
+            'excerpt' => $post->post_excerpt,
+            'permalink' => get_permalink($result_id),
+        );
+        $response[] = $response_item;
+    }
+
+    // Send JSON response
+    header('Content-Type: application/json');
+    echo json_encode($response);
+
+    wp_die(); // Always include this to terminate the script
+}
+
+function pivotalaccessibility_search_query($query, $post_types) {
+    $args = array(
+        's' => $query,
+        'post_type' => json_decode($post_types),
+        'post_status' => 'publish',
+        'orderby' => 'date',
+        'order' => 'DESC',
+        'posts_per_page' => 5,
+    );
+
+    $search_query = new WP_Query($args);
+    $results = array();
+
+    if ($search_query->have_posts()) {
+        while ($search_query->have_posts()) {
+            $search_query->the_post();
+            $results[] = get_the_ID(); // Store post IDs in the results array
+        }
+    }
+
+    wp_reset_postdata();
+    return $results;
 }
 
 class Pivotal_Accessibility_Nav_Walker extends Walker_Nav_Menu {

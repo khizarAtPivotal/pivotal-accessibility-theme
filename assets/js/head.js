@@ -4,6 +4,7 @@ twind.install({
         ['only-sm', '@media screen and (max-width: 768px)'],
         ['children', '& > *'],
         ['expanded', '&[aria-expanded="true"]'],
+        ['focused', '.focused &'],
     ],
     theme: {
         container: {
