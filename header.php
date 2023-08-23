@@ -20,10 +20,10 @@
 
 	<style>
 		:root {
-			--color-primary: #6750A4;
-			--color-primary-darker: #21005D;
-			--color-secondary: #213C7F;
-			--color-accent: #FFC978;
+			--color-primary: #457B9D;
+			--color-primary-darker: #1D3557;
+			--color-secondary: #A8DADC;
+			--color-accent: #E63946;
 			--color-dark: #061735;
 			--color-dark-green: #52821C;
 			--color-red-400: #f87171;

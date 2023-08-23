@@ -93,6 +93,7 @@ function pivotalaccessibility_enqueue_scripts() {
     wp_add_inline_script('pivotalaccessibility-twind', file_get_contents(get_template_directory(). "/assets/js/head.js"), "after");
 
     wp_enqueue_script('pivotalaccessibility-main', pivotalaccessibility_assets('js/main.js'), array('jquery'), pivotalaccessibility_get_version(), true);
+    wp_enqueue_style('animxyz', pivotalaccessibility_assets('css/animxyz.min.css'), array(), pivotalaccessibility_get_version(), 'all');
     wp_enqueue_style('pivotalaccessibility-style', pivotalaccessibility_assets('css/style.css'), array(), pivotalaccessibility_get_version(), 'all');
    
     // Localize

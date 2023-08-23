@@ -10,7 +10,6 @@ if ($args) {
 
 ?>
 
-<div x-data="search" class="relative w-80">
     <form 
         class="search-form flex justify-end items-center bg-gray-100 border-1 border-gray-900 rounded-full w-full" 
         role="search" 
@@ -27,8 +26,13 @@ if ($args) {
                 value="<?php echo get_search_query(); ?>" 
                 name="s" 
             />
-            
-            <div x-show="results.length > 0" class="absolute w-80 left-0 top-full mt-2 bg-white border-1 border-gray-900 p-6 rounded-xl">
+
+            <div 
+                x-cloak
+                x-show="results.length > 0"
+                x-transition:enter="xyz-in"
+                xyz="fade down-1 duration-2" 
+                class="absolute w-72 left-0 top-full mt-2 bg-white border-1 border-gray-900 p-6 rounded-xl">
                 <ul class="flex flex-col gap-4">
                     <template x-for="result in results">
                         <li>
@@ -46,9 +50,7 @@ if ($args) {
                 <?php echo pivotalaccessibility_svg('search'); ?>
             </span>
             <span x-show="state === 'searching'">
-                <?php echo pivotalaccessibility_svg('puff'); ?>
+                <?php echo pivotalaccessibility_svg('spinner'); ?>
             </span>
         </button>
     </form>
-
-</div>

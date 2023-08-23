@@ -167,8 +167,6 @@ document.addEventListener("alpine:init", () => {
             this.handleFocused();
 
             this.$refs.input.addEventListener('input', (e) => {
-                this.handleFocused();
-
                 const query = e.target.value;
                 const selectedPostTypes = ['post', 'page'];
 
@@ -196,15 +194,12 @@ document.addEventListener("alpine:init", () => {
                         .then(data => {
                             this.state = 'searched'
                             this.results = data
-                            console.log(this.results)
                         })
                         .catch(error => {
                             this.state = 'searched'
                             console.error('Error:', error);
                         });
                 }, 300);
-
-
             });
 
             this.$refs.input.addEventListener('focus', (e) => {

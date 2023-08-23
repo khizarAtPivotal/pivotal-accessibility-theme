@@ -6,12 +6,15 @@ if (!defined('ABSPATH')) {
 
 ?>
 
-<header x-data="header" role="banner" class="w-full h-24 z-[1001] py-4 flex flex-col justify-center items-center">
+<header 
+    x-data="header" 
+    role="banner" 
+    class="w-full h-24 z-[1001] py-4 flex flex-col justify-center items-center">
     <?php get_template_part('template-parts/skip-link'); ?>
 
     <div class="container flex justify-between items-center">
         <a 
-            class="shrink-0 text-base font-bold flex justify-center items-center" 
+            class="shrink-0 text-base font-bold flex justify-start items-center w-72" 
             href="<?php echo esc_url(home_url()); ?>" 
             aria-label="<?php echo esc_attr(sprintf(__('%s Logo', 'pivotalaccessibility'), get_bloginfo('name'))); ?>">
 
@@ -33,7 +36,9 @@ if (!defined('ABSPATH')) {
             ));
         ?>
 
-        <?php get_template_part('template-parts/header', 'search-form'); ?>
+        <div x-data="search" class="relative w-72">
+            <?php get_template_part('template-parts/header', 'search-form'); ?>
+        </div>
 
         <button
             class="font-sm font-semibold xl:hidden" 
@@ -70,6 +75,5 @@ if (!defined('ABSPATH')) {
                 ));
             ?>
         </div>
-
     </div>
 </header>
