@@ -251,3 +251,41 @@ class Pivotal_Accessibility_Nav_Walker extends Walker_Nav_Menu {
         $output .= '<ul class="sub-menu">';
     }
 }
+
+
+
+
+// // Replace 'testimonial' with your desired Pod name
+// $pod_name = 'testimonial';
+
+// // Create the Pod
+// $pod = pods_api()->save_pod(array(
+//     'name' => $pod_name,
+//     'label' => 'Testimonials',
+//     'description' => 'Customer testimonials for the about page.',
+//     'storage' => 'meta', // You can use 'meta' or 'table', depending on your preference
+// ));
+
+// // Add name field
+// $name_field = pods_api()->add_field($pod_name, 'name', array(
+//     'name' => 'Name',
+//     'label' => 'Name',
+//     'type' => 'text',
+//     'required' => true,
+// ));
+
+// // Add description field
+// $description_field = pods_api()->add_field($pod_name, 'description', array(
+//     'name' => 'Description',
+//     'label' => 'Description',
+//     'type' => 'textarea',
+//     'required' => true,
+// ));
+
+// // Add image field
+// $image_field = pods_api()->add_field($pod_name, 'image', array(
+//     'name' => 'Image',
+//     'label' => 'Image',
+//     'type' => 'image',
+//     'required' => true,
+// ));
