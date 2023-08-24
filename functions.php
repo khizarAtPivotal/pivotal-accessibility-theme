@@ -9,6 +9,8 @@ add_action('wp_ajax_pivotalaccessibility_index_search', 'pivotalaccessibility_in
 add_action('wp_ajax_nopriv_pivotalaccessibility_index_search', 'pivotalaccessibility_index_search');
 
 add_filter("script_loader_tag", "pivotalaccessibility_add_defer_to_alpine_script", 10, 3);
+add_filter( 'acf/settings/save_json', 'pivotalaccessibility_acf_json_save_point' );
+add_filter( 'acf/settings/load_json', 'pivotalaccessibility_acf_json_load_point' );
 
 function pivotalaccessibility_dd() {
     echo '<pre>';
@@ -92,8 +94,10 @@ function pivotalaccessibility_enqueue_scripts() {
     wp_enqueue_script('pivotalaccessibility-twind', pivotalaccessibility_assets('js/twind.min.js'), array(), pivotalaccessibility_get_version(), false);
     wp_add_inline_script('pivotalaccessibility-twind', file_get_contents(get_template_directory(). "/assets/js/head.js"), "after");
 
+    wp_enqueue_script('embla', pivotalaccessibility_assets('js/embla-carousel.umd.js'), array(), "8.0.0", true);
+
     wp_enqueue_script('pivotalaccessibility-main', pivotalaccessibility_assets('js/main.js'), array('jquery'), pivotalaccessibility_get_version(), true);
-    wp_enqueue_style('animxyz', pivotalaccessibility_assets('css/animxyz.min.css'), array(), pivotalaccessibility_get_version(), 'all');
+    wp_enqueue_style('animxyz', pivotalaccessibility_assets('css/animxyz.min.css'), array(), "0.6.7", 'all');
     wp_enqueue_style('pivotalaccessibility-style', pivotalaccessibility_assets('css/style.css'), array(), pivotalaccessibility_get_version(), 'all');
    
     // Localize
@@ -241,6 +245,62 @@ function pivotalaccessibility_search_query($query, $post_types) {
     return $results;
 }
 
+
+function pivotalaccessibility_kses_ruleset() {
+    $kses_defaults = wp_kses_allowed_html('post');
+
+    $svg_args = array(
+        'svg' => array(
+            'class' => true,
+            'aria-hidden' => true,
+            'aria-labelledby' => true,
+            'stroke-width' => true,
+            'stroke' => true,
+            'stroke-linecap' => true,
+            'stroke-linejoin' => true,
+            'fill' => true,
+            'role' => true,
+            'xmlns' => true,
+            'width' => true,
+            'height' => true,
+            'viewbox' => true, // <= Must be lower case!
+        ),
+        'g' => array('fill' => true),
+        'title' => array('title' => true),
+        'path' => array(
+            'd' => true,
+            'fill' => true,
+            'stroke' => true,
+        ),
+        'line' => array(
+            "x1" => true,
+            "y1" => true,
+            "x2" => true,
+            "y2" => true
+        ),
+        'polyline' => array(
+            'points' => true
+        )
+    );
+
+    return array_merge($kses_defaults, $svg_args);
+}
+
+
+function pivotalaccessibility_acf_json_save_point( $path ) {
+    return get_template_directory() . '/acf-json';
+}
+
+function pivotalaccessibility_acf_json_load_point( $paths ) {
+    // Remove the original path (optional).
+    unset($paths[0]);
+
+    // Append the new path and return it.
+    $paths[] = get_template_directory() . '/acf-json';
+
+    return $paths;
+}
+
 class Pivotal_Accessibility_Nav_Walker extends Walker_Nav_Menu {
     function start_lvl(&$output, $depth = 0, $args = null) {
         // Add a button after the list item's opening tag
@@ -251,41 +311,3 @@ class Pivotal_Accessibility_Nav_Walker extends Walker_Nav_Menu {
         $output .= '<ul class="sub-menu">';
     }
 }
-
-
-
-
-// // Replace 'testimonial' with your desired Pod name
-// $pod_name = 'testimonial';
-
-// // Create the Pod
-// $pod = pods_api()->save_pod(array(
-//     'name' => $pod_name,
-//     'label' => 'Testimonials',
-//     'description' => 'Customer testimonials for the about page.',
-//     'storage' => 'meta', // You can use 'meta' or 'table', depending on your preference
-// ));
-
-// // Add name field
-// $name_field = pods_api()->add_field($pod_name, 'name', array(
-//     'name' => 'Name',
-//     'label' => 'Name',
-//     'type' => 'text',
-//     'required' => true,
-// ));
-
-// // Add description field
-// $description_field = pods_api()->add_field($pod_name, 'description', array(
-//     'name' => 'Description',
-//     'label' => 'Description',
-//     'type' => 'textarea',
-//     'required' => true,
-// ));
-
-// // Add image field
-// $image_field = pods_api()->add_field($pod_name, 'image', array(
-//     'name' => 'Image',
-//     'label' => 'Image',
-//     'type' => 'image',
-//     'required' => true,
-// ));

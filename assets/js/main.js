@@ -30,6 +30,7 @@ jQuery(document).ready(() => {
     });
 
     handleDesktopMenu();
+    handleEmbla();
 });
 
 function handleDesktopMenu() {
@@ -100,6 +101,61 @@ function handleDesktopMenu() {
         }
     }
 
+}
+
+function handleEmbla() {
+    const OPTIONS = {};
+
+    const node = document.querySelector('.embla');
+    const viewport = node.querySelector('.embla__viewport');
+    const prev = node.querySelector('.embla__prev');
+    const next = node.querySelector('.embla__next');
+
+    const embla = EmblaCarousel(viewport, OPTIONS);
+
+    embla.on('select', () => {
+        handleNavState();
+    });
+
+    embla.on('init', () => {
+        handleNavState();
+    });
+
+    function handleNavState() {
+        if (prev) {
+            if (embla.canScrollPrev()) {
+                prev.removeAttribute('disabled');
+            } else {
+                prev.setAttribute('disabled', 'disabled');
+            }
+        }
+
+        if (next) {
+            if (embla.canScrollNext()) {
+                next.removeAttribute('disabled');
+            } else {
+                next.setAttribute('disabled', 'disabled');
+            }
+        }
+    }
+
+    function handleSlideChangeAnnouncement() {
+        announceToScreenReader(`You are on slide ${embla.selectedScrollSnap() + 1}/${embla.internalEngine().slideIndexes.length}`)
+    }
+
+    if (prev) {
+        prev.addEventListener('click', (e) => {
+            embla.scrollPrev();
+            handleSlideChangeAnnouncement();
+        });
+    }
+
+    if (next) {
+        next.addEventListener('click', (e) => {
+            embla.scrollNext();
+            handleSlideChangeAnnouncement();
+        });
+    }
 }
 
 let liveElementTimeout = null;

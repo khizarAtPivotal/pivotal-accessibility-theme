@@ -19,19 +19,22 @@ twind.install({
             }
         },
         fontFamily: {
-            "display": ["Playfair Display"],
-            "body": ["Inter"]
+            display: ["Playfair Display"],
+            body: ["Inter"]
         },
         extend: {
-            "colors": {
+            colors: {
                 "primary": "var(--color-primary)",
+                "primary-100": () => {
+                    return `${getComputedStyle(document.documentElement).getPropertyValue("--color-primary")}1a`;
+                },
                 "secondary": "var(--color-secondary)",
                 "primary-darker": "var(--color-primary-darker)",
                 "dark": "var(--color-dark)",
                 "accent": "var(--color-accent)",
                 "dark-green": "var(--color-dark-green)",
             },
-            "spacing": {
+            spacing: {
                 "112": "28rem",
                 "128": "32rem",
                 "136": "34rem",
@@ -41,6 +44,9 @@ twind.install({
             transitionTimingFunction: {
                 'in-expo': 'cubic-bezier(0.95, 0.05, 0.795, 0.035)',
                 'out-expo': 'cubic-bezier(0.19, 1, 0.22, 1)',
+            },
+            transitionDuration: {
+                '400': '400ms',
             }
         },
 

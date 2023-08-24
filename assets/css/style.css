@@ -395,6 +395,28 @@ header nav.mobile li.toggled>.menu-toggle {
     text-decoration: underline;
 }
 
+/* Embla */
+
+.embla {
+    --slide-size: 100%;
+}
+
+.embla__viewport {
+    overflow: hidden;
+}
+
+.embla__container {
+    backface-visibility: hidden;
+    display: flex;
+    touch-action: pan-y;
+}
+
+.embla__slide {
+    flex: 0 0 var(--slide-size);
+    min-width: 0;
+    position: relative;
+}
+
 /* Prose */
 
 .prose {
