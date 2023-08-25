@@ -15,6 +15,7 @@ if ($args) {
         role="search" 
         method="get" 
         action="<?php echo esc_url(home_url('/')); ?>">
+        
         <label class="inline-flex group relative m-0 w-full" x-bind:class="[focused ? 'focused' : '']">
             <span class="block text-gray-900 text-base mb-1 font-normal pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 transition-all duration-500 ease-out-expo focused:(-translate-x-3 -translate-y-11 scale-75 font-semibold text-gray-900)">
                 <?php echo esc_html__('Search', 'pivotalaccessibility'); ?>
@@ -34,7 +35,7 @@ if ($args) {
                 xyz="fade down-1 duration-2" 
                 class="absolute w-72 left-0 top-full mt-2 bg-white border-1 border-gray-900 p-6 rounded-xl">
                 <ul class="flex flex-col gap-4">
-                    <template x-for="result in results">
+                    <template x-for="(result, i) in results">
                         <li>
                             <a x-bind:href="result.permalink">
                                 <p class="font-semibold" x-text="result.title"></p>
@@ -45,6 +46,7 @@ if ($args) {
                 </ul>
             </div>
         </label>
+
         <button type="submit" class="search-submit h-10 w-10 p-3 flex justify-center items-center text-gray-900">
             <span x-show="state === 'searched' || state === 'idle'">
                 <?php echo pivotalaccessibility_svg('search'); ?>

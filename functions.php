@@ -301,6 +301,48 @@ function pivotalaccessibility_acf_json_load_point( $paths ) {
     return $paths;
 }
 
+function pivotalaccessibility_get_field($field_key, $default_value) {
+    if(!function_exists('get_field')) {
+        return $default_value;
+    }
+
+    $field_value = get_field($field_key);
+    
+    if(!$field_value || empty($field_value)) {
+        return $default_value;
+    }
+
+    if(is_array($field_value)) {
+        return pivotalaccessibility_recursive_merge($default_value, $field_value);
+    }
+
+    return $field_value;
+}
+
+function pivotalaccessibility_get_image_field($field_value, $key) {
+    $default_value = [
+        "url" => pivotalaccessibility_assets("images/pxhere-30748.jpg"),
+        "alt" => ""
+    ];
+
+    if(!$field_value || !$field_value[$key]) {
+        return $default_value[$key];
+    }
+
+    return $field_value[$key];
+}
+
+function pivotalaccessibility_recursive_merge(array $array1, array $array2): array {
+    foreach ($array2 as $key => $value) {
+        if (is_array($value) && isset($array1[$key]) && is_array($array1[$key])) {
+            $array1[$key] = pivotalaccessibility_recursive_merge($array1[$key], $value);
+        } else {
+            $array1[$key] = $value;
+        }
+    }
+    return $array1;
+}
+
 class Pivotal_Accessibility_Nav_Walker extends Walker_Nav_Menu {
     function start_lvl(&$output, $depth = 0, $args = null) {
         // Add a button after the list item's opening tag
