@@ -23,13 +23,13 @@ $data = [
                 "description" => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's"
             ],
             [
-                "icon" => "target-arrow",
+                "icon" => "database-dollar",
                 "subtitle" => "Lorem Ipsum",
                 "title" => "Our Mission",
                 "description" => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's"
             ],
             [
-                "icon" => "target-arrow",
+                "icon" => "users-group",
                 "subtitle" => "Lorem Ipsum",
                 "title" => "Our Mission",
                 "description" => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's"
@@ -52,10 +52,20 @@ $intro = pivotalaccessibility_get_field('intro', $data["intro"]);
     <div class="about-us--our-mission__items container grid lg:grid-cols-3 mt-10">
         <?php for ($i = 1; $i < count($intro["items"]); $i++): ?>
             <div class="flex flex-col justify-start items-center even:pt-44">
-                <div class="flex justify-center items-center shrink-0 p-4 w-96 h-96 border-1 border-gray-300 rounded-full">
+                <div class="relative flex justify-center items-center shrink-0 p-4 w-80 h-80 border-1 border-gray-300 rounded-full">
                     <div class="w-full h-full bg-primary text-white flex justify-center items-center rounded-full p-16">
                         <?php echo pivotalaccessibility_svg(esc_html($intro["items"][$i]['icon'])); ?>
                     </div>
+                </div>
+
+                <div class="relative w-1.5 bg-primary h-80 -mt-6">
+                    <div class="absolute top-full -mt-2 w-4 h-4 rounded-full bg-primary left-1/2 -translate-x-1/2"></div>
+                </div>
+
+                <div class="mt-8 flex flex-col">
+                    <p><?php echo esc_html($intro["items"][$i]['subtitle']); ?></p>
+                    <h3><?php echo esc_html($intro["items"][$i]['title']); ?></h3>
+                    <p><?php echo esc_html($intro["items"][$i]['description']); ?></p>
                 </div>
             </div>
         <?php endfor; ?>
