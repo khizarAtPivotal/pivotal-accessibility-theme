@@ -337,7 +337,12 @@ function pivotalaccessibility_recursive_merge(array $array1, array $array2): arr
         if (is_array($value) && isset($array1[$key]) && is_array($array1[$key])) {
             $array1[$key] = pivotalaccessibility_recursive_merge($array1[$key], $value);
         } else {
-            $array1[$key] = $value;
+            if ($value !== false && $value !== null) {
+                $array1[$key] = $value;
+            } elseif ($value === null && isset($array1[$key])) {
+                // Replace with default value if new value is null
+                $array1[$key] = $array1[$key];
+            }
         }
     }
     return $array1;

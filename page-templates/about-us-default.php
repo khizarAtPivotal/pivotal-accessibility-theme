@@ -72,6 +72,7 @@ $data = [
             "url" => "https://c.pxhere.com/photos/e0/36/cravat_tie_clothing_suit_business_fashion_formal_professional-848646.jpg!d"
         ],
         'items' => [
+            [],
             [
                 'title' => 'Organic Fabric',
                 'icon' => 'dna-2',
@@ -98,6 +99,13 @@ $data = [
 
 $intro = pivotalaccessibility_get_field('intro', $data["intro"]);
 $logos = pivotalaccessibility_get_field('logos', $data["logos"]);
+$testimonials = pivotalaccessibility_get_field('testimonials', $data["testimonials"]);
+$features = pivotalaccessibility_get_field('features', $data["features"]);
+
+$testimonial_posts = new WP_Query([
+    'post_type' => 'testimonial',
+    'posts_per_page' => 4,
+]);
 
 ?>
 
@@ -137,10 +145,10 @@ $logos = pivotalaccessibility_get_field('logos', $data["logos"]);
             </h2>
 
             <div class="flex justify-center items-center flex-wrap gap-8">
-                <img class="w-36 h-auto" src="<?php echo esc_url($logos["images"]["1"]['url']) ?>" alt="">
-                <img class="w-36 h-auto" src="<?php echo esc_url($logos["images"]["2"]['url']) ?>" alt="">
-                <img class="w-36 h-auto" src="<?php echo esc_url($logos["images"]["3"]['url']) ?>" alt="">
-                <img class="w-36 h-auto" src="<?php echo esc_url($logos["images"]["4"]['url']) ?>" alt="">
+                <img class="w-36 h-auto" src="<?php echo esc_url(pivotalaccessibility_get_image_field($logos["images"]["1"], 'url')) ?>" alt="">
+                <img class="w-36 h-auto" src="<?php echo esc_url(pivotalaccessibility_get_image_field($logos["images"]["2"], 'url')) ?>" alt="">
+                <img class="w-36 h-auto" src="<?php echo esc_url(pivotalaccessibility_get_image_field($logos["images"]["3"], 'url')) ?>" alt="">
+                <img class="w-36 h-auto" src="<?php echo esc_url(pivotalaccessibility_get_image_field($logos["images"]["4"], 'url')) ?>" alt="">
             </div>
         </div>
     </div>
@@ -148,39 +156,34 @@ $logos = pivotalaccessibility_get_field('logos', $data["logos"]);
     <div class="bg-primary w-full relative z-0 py-16">
         <div class="container text-white flex flex-col justify-center items-center">
             <p class="mt-16 mb-2 text-2xl font-semibold">
-                <?php echo esc_html($data['testimonials']['subtitle']); ?>
+                <?php echo esc_html($testimonials['subtitle']); ?>
             </p>
             <h2 class="text-4xl">
-                <?php echo esc_html($data['testimonials']['title']); ?>
+                <?php echo esc_html($testimonials['title']); ?>
             </h2>
         </div>
 
         <div class="container">
-            <div class="embla flex justify-center items-center mt-4 gap-8">
+            <div class="embla flex justify-center items-center mt-6 gap-8">
                 <button class="embla__prev w-20 h-20 flex justify-center items-center p-4 text-white transition-all duration-500 ease-out-expo rounded-full disabled:bg-transparent disabled:opacity-50 disabled:text-white hover:bg-[#ffffff0d]">
                     <?php echo pivotalaccessibility_svg('chevron-left'); ?>
                 </button>
 
                 <div class="embla__viewport w-112">
                     <div class="embla__container gap-4">
-                        <?php foreach ($data["testimonials"]["items"] as $index => $testimonial): ?>
-                            <div class="embla__slide bg-white p-8 rounded-lg flex justify-center items-center">
-                                <div class="relative w-20 h-20 bg-gray-100 rounded-full shrink-0 mr-4 overflow-hidden">
-                                    <img 
-                                        class="absolute w-full h-full rounded-full" 
-                                        src="<?php echo esc_html($testimonial['image']['url']); ?>" 
-                                        alt="">
+                        <?php if ( $testimonial_posts->have_posts() ) : $index = 0; ?>
+                            <?php while ($testimonial_posts->have_posts()) : $testimonial_posts->the_post(); ?>
+                                <div class="embla__slide bg-white p-8 rounded-lg flex justify-center items-center">
+                                    <div class="relative w-20 h-20 bg-gray-100 rounded-full shrink-0 mr-4 overflow-hidden">
+                                        <?php get_template_part('template-parts/post-image'); ?>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-base font-bold text-primary"><?php the_title(); ?></h3>
+                                        <p><?php echo wp_kses_post(get_field('content')); ?></p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h3 class="text-base font-bold text-primary">
-                                        <?php echo esc_html($testimonial['name']); ?>
-                                    </h3>
-                                    <p>
-                                        <?php echo esc_html($testimonial['description']); ?>
-                                    </p>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
+                            <?php $index++; endwhile; ?>
+                        <?php endif; wp_reset_postdata(); ?>
                     </div>
                 </div>
 
@@ -195,28 +198,28 @@ $logos = pivotalaccessibility_get_field('logos', $data["logos"]);
 <section class="my-16">
     <div class="container grid lg:grid-cols-2">
         <div class="lg:pr-16">
-            <p class="mb-2 text-xl text-primary font-semibold"><?php echo esc_html($data['features']['subtitle']); ?></p>
-            <h2 class="text-6xl mb-5 text-gray-900"><?php echo esc_html($data['features']['title']); ?></h2>
-            <p><?php echo esc_html($data['features']['description']); ?></p>
+            <p class="mb-2 text-xl text-primary font-semibold"><?php echo esc_html($features['subtitle']); ?></p>
+            <h2 class="text-6xl mb-5 text-gray-900"><?php echo esc_html($features['title']); ?></h2>
+            <p><?php echo wp_kses_post($features['description']); ?></p>
 
             <div class="grid lg:grid-cols-4 mt-8 gap-4">
-                <?php foreach ($data["features"]["items"] as $index => $feature): ?>
+                <?php for ($i = 1; $i < count($features["items"]); $i++): ?>
                     <a 
                         class="group border-1 border-primary rounded-lg py-4 px-6 flex flex-col justify-center items-center gap-2 text-center transition-all duration-400 ease-out-expo hover:(bg-primary-100)" 
-                        href="<?php echo esc_url($feature['url']); ?>">
+                        href="<?php echo esc_url($features["items"][$i]['url']); ?>">
                         <span class="flex justify-center items-center w-8 h-8 bg-primary text-white rounded-full p-2 transition-all duration-400 ease-out-expo">
-                            <?php echo pivotalaccessibility_svg(esc_html($feature['icon'])); ?>
+                            <?php echo pivotalaccessibility_svg(esc_html($features["items"][$i]['icon'])); ?>
                         </span>
                         <p class="text-base font-semibold">
-                            <?php echo esc_html($feature['title']); ?>
+                            <?php echo esc_html($features["items"][$i]['title']); ?>
                         </p>
                     </a>
-                <?php endforeach; ?>
+                <?php endfor; ?>
             </div>
         </div>
 
         <div>
-            <img src="<?php echo esc_html($data['features']['image']['url']); ?>" alt="">
+            <img src="<?php echo esc_html($features['image']['url']); ?>" alt="">
         </div>
     </div>
 </section>

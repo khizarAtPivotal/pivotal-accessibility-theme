@@ -417,6 +417,12 @@ header nav.mobile li.toggled>.menu-toggle {
     position: relative;
 }
 
+/* About Us */
+
+.about-us--our-mission__items .icon-tabler {
+    stroke-width: 0.025em;
+}
+
 /* Prose */
 
 .prose {
