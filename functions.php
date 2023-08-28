@@ -1,5 +1,7 @@
 <?php
 
+require_once get_template_directory() . '/lib/class-tgm-plugin-activation.php';
+
 define('PIVOTAL_ACCESSIBILITY_VERSION', '0.0.2');
 
 add_action("after_setup_theme", "pivotalaccessibility_after_setup_theme");
@@ -7,10 +9,12 @@ add_action("wp_enqueue_scripts", "pivotalaccessibility_enqueue_scripts");
 add_action('wp_print_styles', "pivotalaccessibility_google_fonts");
 add_action('wp_ajax_pivotalaccessibility_index_search', 'pivotalaccessibility_index_search');
 add_action('wp_ajax_nopriv_pivotalaccessibility_index_search', 'pivotalaccessibility_index_search');
+add_action('tgmpa_register', 'pivotalaccessibility_register_required_plugins');
 
 add_filter("script_loader_tag", "pivotalaccessibility_add_defer_to_alpine_script", 10, 3);
-add_filter( 'acf/settings/save_json', 'pivotalaccessibility_acf_json_save_point' );
-add_filter( 'acf/settings/load_json', 'pivotalaccessibility_acf_json_load_point' );
+add_filter("acf/settings/save_json", "pivotalaccessibility_acf_json_save_point");
+add_filter("acf/settings/load_json", "pivotalaccessibility_acf_json_load_point");
+
 
 function pivotalaccessibility_dd() {
     echo '<pre>';
@@ -337,7 +341,7 @@ function pivotalaccessibility_recursive_merge(array $array1, array $array2): arr
         if (is_array($value) && isset($array1[$key]) && is_array($array1[$key])) {
             $array1[$key] = pivotalaccessibility_recursive_merge($array1[$key], $value);
         } else {
-            if ($value !== false && $value !== null) {
+            if ($value !== false && $value !== null && $value !== "") {
                 $array1[$key] = $value;
             } elseif ($value === null && isset($array1[$key])) {
                 // Replace with default value if new value is null
@@ -346,6 +350,37 @@ function pivotalaccessibility_recursive_merge(array $array1, array $array2): arr
         }
     }
     return $array1;
+}
+
+
+function pivotalaccessibility_register_required_plugins() {
+    $plugins = array(
+        array(
+            'name'      => 'Advanced Custom Fields (ACF)',
+            'slug'      => 'advanced-custom-fields',
+            'required'  => true,
+        ),
+        array(
+            'name'      => 'Kirki Customizer Framework',
+            'slug'      => 'kirki',
+            'required'  => true,
+        )
+    );
+
+    $config = array(
+        'id'           => 'pivotalaccessibility', // Unique ID for TGMPA
+        'default_path' => '',
+        'menu'         => 'tgmpa-install-plugins', // Menu slug
+        'parent_slug'  => 'themes.php',
+        'capability'   => 'edit_theme_options',
+        'has_notices'  => true,
+        'dismissable'  => true,
+        'dismiss_msg'  => '', // Customize the dismissal message
+        'is_automatic' => true,
+        'message'      => '', // Customize the notice message
+    );
+
+    tgmpa($plugins, $config);
 }
 
 class Pivotal_Accessibility_Nav_Walker extends Walker_Nav_Menu {
@@ -357,4 +392,37 @@ class Pivotal_Accessibility_Nav_Walker extends Walker_Nav_Menu {
         
         $output .= '<ul class="sub-menu">';
     }
+}
+
+// Kirki
+
+if (class_exists('Kirki')) {
+    new \Kirki\Panel(
+        'appearance',
+        [
+            'priority'    => 10,
+            'title'       => esc_html__( 'Appearance', 'pivotalaccessibility' ),
+            'description' => esc_html__( 'Change the appearance of the theme.', 'pivotalaccessibility' ),
+        ]
+    );
+
+    new \Kirki\Section(
+        'colors',
+        [
+            'title'       => esc_html__( 'Colors', 'pivotalaccessibility' ),
+            'description' => esc_html__( 'Customize the colors of the theme.', 'pivotalaccessibility' ),
+            'panel'       => 'appearance',
+            'priority'    => 160,
+        ]
+    );
+
+    new \Kirki\Field\Color(
+        [
+            'settings'    => 'color_primary',
+            'label'       => __( 'Primary Color', 'pivotalaccessibility' ),
+            'description' => esc_html__( 'Primary color of the theme.', 'pivotalaccessibility' ),
+            'section'     => 'colors',
+            'default'     => '#457B9D',
+        ]
+    );
 }
