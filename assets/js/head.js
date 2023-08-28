@@ -25,11 +25,8 @@ twind.install({
         extend: {
             colors: {
                 "primary": "var(--color-primary)",
-                "primary-100": () => {
-                    return `${getComputedStyle(document.documentElement).getPropertyValue("--color-primary")}1a`;
-                },
+                "primary-100": "var(--color-primary-100)",
                 "secondary": "var(--color-secondary)",
-                "primary-darker": "var(--color-primary-darker)",
                 "dark": "var(--color-dark)",
                 "accent": "var(--color-accent)",
                 "dark-green": "var(--color-dark-green)",
@@ -51,4 +48,10 @@ twind.install({
         },
 
     },
-})
+});
+
+document.addEventListener('DOMContentLoaded', (e) => {
+    const color = `${getComputedStyle(document.documentElement).getPropertyValue("--color-primary")}1a`;
+
+    document.documentElement.style.setProperty("--color-primary-100", color);
+});

@@ -400,7 +400,7 @@ if (class_exists('Kirki')) {
     new \Kirki\Panel(
         'appearance',
         [
-            'priority'    => 10,
+            'priority'    => 20,
             'title'       => esc_html__( 'Appearance', 'pivotalaccessibility' ),
             'description' => esc_html__( 'Change the appearance of the theme.', 'pivotalaccessibility' ),
         ]

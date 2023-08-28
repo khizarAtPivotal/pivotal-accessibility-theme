@@ -37,7 +37,7 @@ if ($args) {
                 <ul class="flex flex-col gap-4">
                     <template x-for="(result, i) in results">
                         <li>
-                            <a x-bind:href="result.permalink">
+                            <a class="hover:underline" x-bind:href="result.permalink">
                                 <p class="font-semibold" x-text="result.title"></p>
                                 <p x-text="result.excerpt"></p>
                             </a>

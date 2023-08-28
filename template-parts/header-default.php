@@ -27,11 +27,11 @@ if (!defined('ABSPATH')) {
 
         <?php
             wp_nav_menu(array(
-                'theme_location' => 'primary',
-                'menu_class' => 'nav-menu flex justify-end items-center gap-4 font-medium',
                 'container' => 'nav',
                 'container_aria_label' => 'Primary',
-                'container_class' => 'desktop hidden xl:flex',
+                'container_class' => 'desktop hidden grow lg:flex justify-center items-center flex-wrap',
+                'theme_location' => 'primary',
+                'menu_class' => 'nav-menu flex justify-end items-center gap-4 font-medium',
                 'walker' => new Pivotal_Accessibility_Nav_Walker()
             ));
         ?>
@@ -41,7 +41,7 @@ if (!defined('ABSPATH')) {
         </div>
 
         <button
-            class="font-sm font-semibold xl:hidden" 
+            class="font-sm font-semibold lg:hidden" 
             x-on:click.prevent="showSidebar ? hide() : show()">
             Open Menu
         </button>

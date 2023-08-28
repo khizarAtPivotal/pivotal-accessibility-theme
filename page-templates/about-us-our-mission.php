@@ -13,26 +13,26 @@ $data = [
     "intro" => [
         "subtitle" => "Lorem Ipsum is simply",
         "title" => "Our Mission & Vision",
-        "description" => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "description" => "Welcome to our mission webpage, where we proudly showcase our commitment to making a positive impact on the world through three distinct and impactful missions. With a focus on innovation, collaboration, and sustainable solutions, we are dedicated to addressing some of the most pressing challenges of our time. Explore our missions below to learn more about our objectives, strategies, and the progress we've made.",
         "items" => [
             [],
             [
                 "icon" => "target-arrow",
-                "subtitle" => "Lorem Ipsum",
-                "title" => "Our Mission",
-                "description" => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's"
+                "subtitle" => "Empowerment through Knowledge",
+                "title" => "Education",
+                "description" => "Our first mission is to empower individuals worldwide by providing access to quality education. We believe that education is the cornerstone of personal and societal development."
             ],
             [
                 "icon" => "database-dollar",
-                "subtitle" => "Lorem Ipsum",
-                "title" => "Our Value",
-                "description" => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's"
+                "subtitle" => "Safeguarding Our Planet",
+                "title" => "Environmental",
+                "description" => "Our efforts have contributed to cleaner air and water, the protection of endangered species, and the adoption of sustainable practices by businesses and individuals alike."
             ],
             [
                 "icon" => "users-group",
-                "subtitle" => "Lorem Ipsum",
-                "title" => "Our Vision",
-                "description" => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's"
+                "subtitle" => "Building Healthy Communities",
+                "title" => "Health",
+                "description" => "Our third mission revolves around ensuring access to quality healthcare and promoting overall well-being."
             ]
         ]
     ]
@@ -52,7 +52,7 @@ $intro = pivotalaccessibility_get_field('intro', $data["intro"]);
     <div class="about-us--our-mission__items container grid lg:grid-cols-3 mt-10">
         <?php for ($i = 1; $i < count($intro["items"]); $i++): ?>
             <div class="flex flex-col justify-start items-center even:pt-40">
-                <div class="relative flex justify-center items-center shrink-0 p-4 w-80 h-80 border-1 border-gray-300 rounded-full">
+                <div class="relative flex justify-center items-center shrink-0 p-4 shadow-md w-80 h-80 border-1 border-gray-300 rounded-full">
                     <div class="w-full h-full bg-primary text-white flex justify-center items-center rounded-full p-16">
                         <?php echo pivotalaccessibility_svg(esc_html($intro["items"][$i]['icon'])); ?>
                     </div>
