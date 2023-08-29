@@ -89,6 +89,10 @@ $team_posts = new WP_Query([
                 <?php $index++; endwhile; ?>
             <?php endif; wp_reset_postdata(); ?>
         </div>
+
+        <div class="mt-8 flex justify-center items-center">
+            <a class="button button--primary" href="/team">View All</a>
+        </div>
     </div>
 </section>
 
