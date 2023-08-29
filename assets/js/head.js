@@ -49,9 +49,3 @@ twind.install({
 
     },
 });
-
-document.addEventListener('DOMContentLoaded', (e) => {
-    const color = `${getComputedStyle(document.documentElement).getPropertyValue("--color-primary")}1a`;
-
-    document.documentElement.style.setProperty("--color-primary-100", color);
-});

@@ -107,6 +107,11 @@ function handleEmbla() {
     const OPTIONS = {};
 
     const node = document.querySelector('.embla');
+
+    if(!node) {
+        return
+    }
+    
     const viewport = node.querySelector('.embla__viewport');
     const prev = node.querySelector('.embla__prev');
     const next = node.querySelector('.embla__next');

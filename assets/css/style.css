@@ -423,6 +423,26 @@ header nav.mobile li.toggled>.menu-toggle {
     stroke-width: 0.025em;
 }
 
+/* Buttons */
+
+.button {
+    position: relative;
+    display: inline-flex;
+    background-color: var(--color-gray-100);
+    color: inherit;
+    font-weight: 600;
+    font-size: 1em;
+    padding: 1em 2.4em;
+    border-radius: 0.25em;
+    transition: all 400ms var(--ease-out-expo);
+}
+
+.button--primary {
+    background-color: var(--color-primary);
+    color: #fff;
+}
+
+
 /* Prose */
 
 .prose {

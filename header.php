@@ -21,6 +21,8 @@
 	<style>
 		:root {
 			--color-primary: <?php echo esc_html(get_theme_mod("color_primary", "#457B9D")); ?>;
+			--color-primary-100: <?php echo esc_html(get_theme_mod("color_primary", "#457B9D").'1a'); ?>;
+			--color-primary-900: <?php echo esc_html(get_theme_mod("color_primary", "#457B9D").'e6'); ?>;
 			--color-secondary: #A8DADC;
 			--color-accent: #E63946;
 			--color-dark: #061735;
