@@ -36,9 +36,11 @@ $data = [
 $intro = pivotalaccessibility_get_field('intro', $data["intro"]);
 $members = pivotalaccessibility_get_field('members', $data["members"]);
 
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $team_posts = new WP_Query([
     'post_type' => 'member',
-    'posts_per_page' => 4,
+    'posts_per_page' => 120,
+    'paged' => $paged,
 ]);
 
 ?>
@@ -76,11 +78,11 @@ $team_posts = new WP_Query([
         <div class="grid lg:grid-cols-4 gap-10">
             <?php if ($team_posts->have_posts()) : $index = 0; ?>
                 <?php while ($team_posts->have_posts()) : $team_posts->the_post(); ?>
-                    <?php
-                        $role = pivotalaccessibility_get_field('role', 'Member');
-                    ?>
+                    <?php $role = pivotalaccessibility_get_field('role', 'Member'); ?>
                     <div>
-                        <a href="<?php the_permalink(); ?>" class="flex w-full h-80 rounded-xl overflow-hidden mb-2">
+                        <a 
+                            class="flex w-full h-80 rounded-xl overflow-hidden mb-2" 
+                            href="<?php the_permalink(); ?>">
                             <?php get_template_part('template-parts/post-image'); ?>
                         </a>
                         <h3 class="text-2xl"><?php the_title(); ?></h3>
@@ -90,9 +92,9 @@ $team_posts = new WP_Query([
             <?php endif; wp_reset_postdata(); ?>
         </div>
 
-        <div class="mt-8 flex justify-center items-center">
-            <a class="button button--primary" href="/team">View All</a>
-        </div>
+		<?php if($team_posts->max_num_pages > 1): ?>
+            <?php get_template_part('template-parts/pagination', null, ['wp_query' => $team_posts]); ?>
+        <?php endif; ?>
     </div>
 </section>
 

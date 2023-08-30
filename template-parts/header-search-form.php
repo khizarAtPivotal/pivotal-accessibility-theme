@@ -11,7 +11,7 @@ if ($args) {
 ?>
 
     <form 
-        class="search-form flex justify-end items-center bg-gray-100 border-1 border-gray-900 rounded-full w-full" 
+        class="search-form flex justify-end items-center bg-primary-100 rounded-full w-full" 
         role="search" 
         method="get" 
         action="<?php echo esc_url(home_url('/')); ?>">

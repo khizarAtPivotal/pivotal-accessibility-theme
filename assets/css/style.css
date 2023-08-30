@@ -373,7 +373,8 @@ header nav.mobile li.toggled>.menu-toggle {
 
 .pivotalaccessibility_pagination a.page-numbers.next,
 .pivotalaccessibility_pagination a.page-numbers.prev {
-    padding: 0.5rem;
+    width: auto;
+    padding: 0.25em 0.75em;
 }
 
 .pivotalaccessibility_pagination a.page-numbers:hover {

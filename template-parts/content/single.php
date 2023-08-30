@@ -11,7 +11,7 @@
 
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> >
-	<div class="relative h-96 flex flex-start items-stretch gap-4 mb-8">
+	<div class="relative h-96 flex flex-start items-stretch gap-4 mb-8 overflow-hidden">
 		<div class="absolute inset-0 self-stretch bg-[#000000BF] text-white py-16 px-16 rounded-2xl">
 			<h1 class="mb-4">
 				<?php the_title(); ?>
