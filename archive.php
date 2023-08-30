@@ -14,7 +14,7 @@ get_header(); ?>
 
 <div class="container flex-grow self-stretch">
 
-<?php if (have_posts()): ?>
+	<?php if (have_posts()): ?>
 	<div class="posts grid lg:grid-cols-3 gap-8 my-12 items-start">
 
 		<?php 

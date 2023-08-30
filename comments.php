@@ -22,10 +22,7 @@ endif;
 
 <div id="comments" class="comments-area">
 
-	<?php
-	// You can start editing here -- including this comment!
-	if ( have_comments() ) :
-	?>
+	<?php if ( have_comments() ) : ?>
 		<h2 class="comments-title">
 			<?php
 				printf(esc_html( _n( '%d Comment.', '%d Comments.', get_comments_number(), 'pivotalaccessibility' ) ), absint(get_comments_number()));
@@ -33,13 +30,13 @@ endif;
 		</h2>
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
-		<nav id="comment-nav-above" class="navigation comment-navigation" role="navigation">
-			<h2 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'pivotalaccessibility' ); ?></h2>
-			<div class="nav-links">
-				<div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'pivotalaccessibility' ) ); ?></div>
-				<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'pivotalaccessibility' ) ); ?></div>
-			</div><!-- .nav-links -->
-		</nav>
+			<nav id="comment-nav-above" class="navigation comment-navigation" role="navigation">
+				<h2 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'pivotalaccessibility' ); ?></h2>
+				<div class="nav-links">
+					<div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'pivotalaccessibility' ) ); ?></div>
+					<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'pivotalaccessibility' ) ); ?></div>
+				</div><!-- .nav-links -->
+			</nav>
 		<?php endif; // Check for comment navigation. ?>
 
 		<ol class="comment-list">

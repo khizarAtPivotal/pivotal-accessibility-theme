@@ -25,18 +25,21 @@ get_header();
         ?>
         </div>
 
-        <?php if($wp_query->max_num_pages > 1): ?>
-            <?php get_template_part('template-parts/pagination'); ?>
-        <?php 
-            endif; 
+    <?php 
+        if($wp_query->max_num_pages > 1) {
+            get_template_part('template-parts/pagination'); 
+        }
+    ?>
 
-            else:
+    <?php 
 
-            get_template_part( 'template-parts/content/none');
+        else:
 
-            endif;
-        ?>
-    
+        get_template_part( 'template-parts/content/none');
+
+        endif;
+    ?>
+
     </div>
 </div><!-- #primary -->
 

@@ -16,8 +16,7 @@ get_header(); ?>
 
 <div class="container">
 	<div id="primary" class="content-area">
-
-			<?php
+		<?php
 			/* Start the Loop */
 			while ( have_posts() ) :
 				the_post();
@@ -30,8 +29,7 @@ get_header(); ?>
 				endif;
 
 			endwhile;
-
-			?>
+		?>
 	</div><!-- #primary -->
 </div><!-- .container -->
 
